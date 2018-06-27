@@ -32,7 +32,6 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity gt_circuit_tb is
---  Port ( );
 end gt_circuit_tb;
 
 architecture behavioral of gt_circuit_tb is
@@ -49,7 +48,6 @@ begin
     );
     
     simulation: process
-    --variable compare_out : std_logic;
     begin
         for i in 0 to 3 loop
             for j in 0 to 3 loop
