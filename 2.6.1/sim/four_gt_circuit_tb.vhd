@@ -1,10 +1,10 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: Sammy Lin
+-- Engineer: 
 -- 
--- Create Date: 06/25/2018 11:30:37 PM
+-- Create Date: 06/27/2018 08:12:00 AM
 -- Design Name: 
--- Module Name: gt_circuit_tb - behavioral
+-- Module Name: four_gt_circuit_tb - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,16 +31,18 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity gt_circuit_tb is
-end gt_circuit_tb;
+entity four_gt_circuit_tb is
+--  Port ( );
+end four_gt_circuit_tb;
 
-architecture behavioral of gt_circuit_tb is
-signal a, b : std_logic_vector(1 downto 0);
-signal gt, gt_out, compare_out : std_logic;
+architecture behavioral of four_gt_circuit_tb is
+
+signal a, b : std_logic_vector(3 downto 0);
+signal gt, compare_out : std_logic;
 
 begin
 
-    uut: entity work.gt_circuit(dataflow)
+    uut: entity work.four_gt_circuit(dataflow)
     port map(
         a => a,
         b => b,
@@ -49,8 +51,8 @@ begin
     
     simulation: process
     begin
-        for i in 0 to 3 loop
-            for j in 0 to 3 loop
+        for i in 0 to 15 loop
+            for j in 0 to 15 loop
                 a <= std_logic_vector(to_unsigned(i, a'length));
                 b <= std_logic_vector(to_unsigned(j, b'length));
                

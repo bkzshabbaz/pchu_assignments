@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: Sammy Lin
 -- 
--- Create Date: 06/25/2018 11:30:37 PM
+-- Create Date: 06/26/2018 11:31:56 PM
 -- Design Name: 
--- Module Name: gt_circuit_tb - behavioral
+-- Module Name: cmp_circuit_tb - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,20 +31,20 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity gt_circuit_tb is
-end gt_circuit_tb;
+entity cmp_circuit_tb is
+end cmp_circuit_tb;
 
-architecture behavioral of gt_circuit_tb is
+architecture behavioral of cmp_circuit_tb is
 signal a, b : std_logic_vector(1 downto 0);
-signal gt, gt_out, compare_out : std_logic;
+signal eq, eq_out, compare_out : std_logic;
 
 begin
 
-    uut: entity work.gt_circuit(dataflow)
+    uut: entity work.cmp_circuit(dataflow)
     port map(
         a => a,
         b => b,
-        gt => gt
+        eq => eq
     );
     
     simulation: process
@@ -54,15 +54,15 @@ begin
                 a <= std_logic_vector(to_unsigned(i, a'length));
                 b <= std_logic_vector(to_unsigned(j, b'length));
                
-                if (i > j) then
+                if (i = j) then
                     compare_out <= '1';
                 else
                     compare_out <= '0';
                 end if;
                 
                 wait for 1 ns;
-                assert (gt = compare_out)
-                report "=================== Value not greater than ===================="
+                assert (eq = compare_out)
+                report "=================== Value not equal ===================="
                 severity error;
                 wait for 10 ns;
             end loop;
@@ -71,4 +71,4 @@ begin
         report "=================== END SIMULATION ===================="
         severity failure;
     end process simulation;
-end behavioral;
+end Behavioral;

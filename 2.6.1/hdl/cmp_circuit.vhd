@@ -1,10 +1,10 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: Sammy Lin 
+-- Engineer: Sammy Lin
 -- 
--- Create Date: 06/25/2018 12:11:36 AM
+-- Create Date: 06/26/2018 11:26:58 PM
 -- Design Name: 
--- Module Name: gt_circuit - dataflow
+-- Module Name: cmp_circuit - dataflow
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,22 +31,20 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity gt_circuit is
-    port ( a : in std_logic_vector (1 downto 0);
-           b : in std_logic_vector (1 downto 0);
-           gt : out std_logic);
-end gt_circuit;
+entity cmp_circuit is
+    Port ( a : in STD_LOGIC_VECTOR (1 downto 0);
+           b : in STD_LOGIC_VECTOR (1 downto 0);
+           eq : out STD_LOGIC);
+end cmp_circuit;
 
-architecture dataflow of gt_circuit is
-signal p0, p1, p2, p3, p4, p5 : std_logic;
+architecture dataflow of cmp_circuit is
+signal p0, p1, p2, p3: std_logic;
 begin
 
-    gt <= p0 or p1 or p2 or p3 or p4 or p5;
+    eq <= p0 or p1 or p2 or p3;
     
-    p0 <= not a(1) and a(0) and not b(1) and not b(0);
-    p1 <= a(1) and not a(0) and not b(1) and not b(0);
-    p2 <= a(1) and not a(0) and not b(1) and b(0);
-    p3 <= a(1) and a(0) and not b(1) and not b(0);
-    p4 <= a(1) and a(0) and not b(1) and b(0);  
-    p5 <= a(1) and a(0) and  b(1) and not b(0);  
+    p0 <= not a(1) and not a(0) and not b(1) and not b(0);
+    p1 <= not a(1) and a(0) and not b(1) and b(0);
+    p2 <= a(1) and not a(0) and b(1) and not b(0);
+    p3 <= a(1) and a(0) and b(1) and b(0);
 end dataflow;
